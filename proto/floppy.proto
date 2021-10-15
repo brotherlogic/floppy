@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package floppy;
+
+option go_package = "github.com/brotherlogic/floppy/proto";
+
+message RegisterRequest {
+  int32 instance_id = 1;
+}
+
+message RegisterResponse {}
+
+service FloppyServer {
+  rpc Register(RegisterRequest) returns (RegisterResponse) {};
+}

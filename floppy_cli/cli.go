@@ -26,7 +26,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := pb.NewFloppyServiceClient(conn)
+	client := pb.NewFloppyServerClient(conn)
 
 	switch os.Args[1] {
 	case "set":
@@ -35,7 +35,7 @@ func main() {
 
 		if err := setFlags.Parse(os.Args[2:]); err == nil {
 			if *instanceId > 0 {
-				_, err := client.Register(ctx, &pb.RegisterRequest{InstanceId: *instanceId})
+				_, err := client.Register(ctx, &pb.RegisterRequest{InstanceId: int32(*instanceId)})
 				if err != nil {
 					log.Fatalf("Bad request: %v", err)
 				}
